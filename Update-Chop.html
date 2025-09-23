@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Tag</title>
+  <title>Edit Chop's Tag</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { box-sizing: border-box; }
@@ -91,7 +91,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Edit Tag</h2>
+    <h2>Edit Chop's Tag</h2>
     <img src="https://iili.io/2piJWTg.png" alt="Chop the Rottweiler" class="profile-pic">
     <form id="editForm">
       <label for="name">Name</label>
@@ -125,7 +125,7 @@
   <script>
     async function sendToDiscord() {
       const statusEl = document.getElementById('status');
-      statusEl.innerHTML = 'Waiting for server <span class="spinner"></span>';
+      statusEl.innerHTML = 'Waiting for server to become available <span class="spinner"></span>';
 
       const data = {
         content: "Edit Tag Submission",
