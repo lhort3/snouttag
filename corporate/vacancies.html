@@ -85,23 +85,16 @@
       line-height: 1.4;
     }
 
-    /* Responsive */
     @media (max-width: 1200px) {
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .grid { grid-template-columns: repeat(4, 1fr); }
     }
 
     @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (max-width: 600px) {
-      .grid {
-        grid-template-columns: repeat(1, 1fr);
-      }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -112,17 +105,20 @@
 
     <div class="grid">
 
-      <!-- LINK CARD -->
-      <a href="https://example.com" class="card">
+      <a href="https://example.com" class="card" target="_blank" rel="noopener">
         <div class="icon">📩</div>
         <div class="title">Email Handler</div>
-        <div class="description">Customer service agent, replying to emails. Click for more info. ID: 5625>
+        <div class="description">
+          Customer service agent, replying to emails. Click for more info. ID: 5625
+        </div>
       </a>
 
-      <a href="https://instagram.com" class="card">
+      <a href="https://instagram.com" class="card" target="_blank" rel="noopener">
         <div class="icon">📸</div>
         <div class="title">Instagram</div>
-        <div class="description">Follow us for updates & posts</div>
+        <div class="description">
+          Follow us for updates & posts
+        </div>
       </a>
 
     </div>
