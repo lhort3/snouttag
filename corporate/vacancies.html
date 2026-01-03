@@ -1,128 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recruitment Availabilities</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnoutTag Careers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color: #0f0f12;
-      --card-color: #1b1b22;
-      --card-hover: #262630;
-      --accent: #4da3ff;
-      --text-main: #ffffff;
-      --text-muted: #b5b5c0;
-      --radius: 14px;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
     body {
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      background: var(--bg-color);
-      color: var(--text-main);
-      padding: 40px 20px;
+      background-color: #f7f9fc;
+      color: #333;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1400px;
-      margin: auto;
+    /* Raining paw prints */
+    .paw-print {
+      position: absolute;
+      width: 40px;
+      opacity: 0.2;
+      animation: fall linear infinite;
+      pointer-events: none;
     }
 
-    h1 {
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* Multiple paw prints positions and speeds */
+    .paw-print:nth-child(1) { left: 5%; animation-duration: 16s; }
+    .paw-print:nth-child(2) { left: 25%; animation-duration: 14s; }
+    .paw-print:nth-child(3) { left: 45%; animation-duration: 18s; }
+    .paw-print:nth-child(4) { left: 65%; animation-duration: 15s; }
+    .paw-print:nth-child(5) { left: 85%; animation-duration: 20s; }
+
+    header {
+      background-color: #578ff6;
+      color: #fff;
       text-align: center;
-      margin-bottom: 30px;
-      font-size: 2rem;
+      position: relative;
+      padding: 0;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
+    /* 2:1 header image */
+    .header-image {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      background-color: #ddd; /* placeholder */
+      background-size: cover;
+      background-position: center;
     }
 
-    .card {
-      background: var(--card-color);
-      border-radius: var(--radius);
+    header h1 {
+      margin: 20px 0 10px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      padding: 0 20px;
+    }
+
+    header p {
+      margin: 0 0 40px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      padding: 0 20px;
+    }
+
+    /* Container moved slightly down */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto 60px;
       padding: 20px;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s ease, background 0.2s ease;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      position: relative;
+      top: 20px; /* move down from header */
+      z-index: 1;
+    }
+
+    .job-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 25px 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      justify-content: space-between;
     }
 
-    .card:hover {
-      background: var(--card-hover);
-      transform: translateY(-4px);
+    .job-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
     }
 
-    .icon {
-      width: 42px;
-      height: 42px;
+    .job-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      color: #578ff6;
+    }
+
+    .job-description {
+      font-size: 1rem;
+      color: #555;
+      flex-grow: 1;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .job-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .job-info span {
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: rgba(77, 163, 255, 0.15);
-      font-size: 22px;
-      color: var(--accent);
+      gap: 5px;
     }
 
-    .title {
-      font-size: 1.05rem;
+    .job-info svg {
+      width: 16px;
+      height: 16px;
+      fill: #578ff6;
+    }
+
+    .view-btn {
+      background-color: #578ff6;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 1rem;
       font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
     }
 
-    .description {
+    .view-btn:hover {
+      background-color: #3f6de0;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #777;
       font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.4;
+      border-top: 1px solid #e0e0e0;
+      position: relative;
+      z-index: 1;
     }
 
-    @media (max-width: 1200px) {
-      .grid { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; }
+      .container { gap: 20px; top: 10px; }
     }
 
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
+    @media (max-width: 480px) {
+      .job-info { flex-direction: column; gap: 10px; }
+      .paw-print { width: 25px; } /* smaller paw prints on mobile */
     }
   </style>
 </head>
 <body>
 
+  <!-- Paw prints background -->
+  <img src="https://img.icons8.com/emoji/48/000000/paw-prints.png" class="paw-print">
+  <img src="https://img.icons8.com/emoji/48/000000/paw-prints.png" class="paw-print">
+  <img src="https://img.icons8.com/emoji/48/000000/paw-prints.png" class="paw-print">
+  <img src="https://img.icons8.com/emoji/48/000000/paw-prints.png" class="paw-print">
+  <img src="https://img.icons8.com/emoji/48/000000/paw-prints.png" class="paw-print">
+
+  <header>
+    <img src="https://lhort3.github.io/snouttag/corporate/Capture.PNG" alt="Header Image" class="header-image">
+</header>
+
+
   <div class="container">
-    <h1>Recruitment Opportunities</h1>
-
-    <div class="grid">
-
-      <a href="https://example.com" class="card" target="_blank" rel="noopener">
-        <div class="icon">📩</div>
-        <div class="title">Email Handler</div>
-        <div class="description">
-          Customer service agent, replying to emails. Click for more info. ID: 5625
-        </div>
-      </a>
-
-      <a href="https://instagram.com" class="card" target="_blank" rel="noopener">
-        <div class="icon">📸</div>
-        <div class="title">Instagram</div>
-        <div class="description">
-          Follow us for updates & posts
-        </div>
-      </a>
-
+    <div class="job-card">
+      <h2 class="job-title">Customer Service Agent</h2>
+      <p class="job-description">
+        You will work from home, taking calls from customers and providing support. This job can be taken from people aged 14 years or older, depending on which county you live in.
+      </p>
+      <div class="job-info">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168 0C75.5 0 0 75.5 0 168C0 325.7 168 512 168 512s168-186.3 168-344C336 75.5 260.5 0 168 0zM168 232C150.3 232 136 217.7 136 200s14.3-32 32-32s32 14.3 32 32S185.7 232 168 232z"/></svg>
+          Remote
+        </span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-119.4 0-216-96.6-216-216S136.6 40 256 40s216 96.6 216 216-96.6 216-216 216zm10-348V272c0 5.5-4.5 10-10 10s-10-4.5-10-10V124c0-5.5 4.5-10 10-10h.1c5.6 0 9.9 4.4 9.9 10z"/></svg>
+          Part-Time
+        </span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M320 32H64C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zM192 416c-44.1 0-80-35.9-80-80h160c0 44.1-35.9 80-80 80z"/></svg>
+          Voluntry (unpaid)
+        </span>
+      </div>
+      <a class="view-btn" href="https://example.com" target="_blank">View Details</a>
     </div>
+
+    <div class="job-card">
+      <h2 class="job-title">Marketing Specialist</h2>
+      <p class="job-description">
+        Help SnoutTag reach more pet lovers through creative campaigns and social media engagement.
+      </p>
+      <div class="job-info">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168 0C75.5 0 0 75.5 0 168C0 325.7 168 512 168 512s168-186.3 168-344C336 75.5 260.5 0 168 0zM168 232C150.3 232 136 217.7 136 200s14.3-32 32-32s32 14.3 32 32S185.7 232 168 232z"/></svg>
+          London
+        </span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-119.4 0-216-96.6-216-216S136.6 40 256 40s216 96.6 216 216-96.6 216-216 216zm10-348V272c0 5.5-4.5 10-10 10s-10-4.5-10-10V124c0-5.5 4.5-10 10-10h.1c5.6 0 9.9 4.4 9.9 10z"/></svg>
+          Part-time
+        </span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M320 32H64C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zM192 416c-44.1 0-80-35.9-80-80h160c0 44.1-35.9 80-80 80z"/></svg>
+          $35k-$50k
+        </span>
+      </div>
+      <a class="view-btn" href="https://example.com" target="_blank">View Details</a>
+    </div>
+
   </div>
+
+  <footer>
+    &copy; 2026 SnoutTag. Made with love for pets and tech.
+  </footer>
+
+  <script>
+    // Replace with your header image URL
+    document.getElementById('header-image').style.backgroundImage = "url('YOUR_IMAGE_URL_HERE')";
+  </script>
 
 </body>
 </html>
